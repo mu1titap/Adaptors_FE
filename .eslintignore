@@ -1,0 +1,5 @@
+# .eslintignore
+public/service-worker.js
+public/sw.js
+public/workbox-7144475a.js
+options.ts
