@@ -3,6 +3,7 @@
 import MeetingRoomNav from '@/components/aside/metting-room/MeetingRoomNav';
 import Funnel from '@/components/common/Funnel/Funnel';
 import useFunnel from '@/components/common/Funnel/useFunnel';
+import Meeting from './meeting/Meeting';
 
 const steps = [
   'Overview',
@@ -14,18 +15,18 @@ const steps = [
   'Log Out',
 ];
 
-function MeetinRoomLayOut() {
+function MeetingRoomLayOut() {
   const { level, step, onSelectStep } = useFunnel({ steps });
   return (
     <main className="grid grid-cols-6 w-full h-screen min-w-[1248px]">
       <MeetingRoomNav level={level} onSelectStep={onSelectStep} />
-      <div className="cols-span-5">
+      <div className="col-span-5">
         <Funnel step={step}>
           <Funnel.Step name="Overview">
             <div>1</div>
           </Funnel.Step>
           <Funnel.Step name="Meeting">
-            <div>2</div>
+            <Meeting />
           </Funnel.Step>
           <Funnel.Step name="Messages">
             <div>3</div>
@@ -48,4 +49,4 @@ function MeetinRoomLayOut() {
   );
 }
 
-export default MeetinRoomLayOut;
+export default MeetingRoomLayOut;

@@ -1,5 +1,5 @@
-import MeetinRoomLayOut from '@/components/pages/main/meeting-room/mentor/MeetinRoomLayOut';
+import MeetingRoomLayOut from '@/components/pages/main/meeting-room/mentor/MeetingRoomLayOut';
 
 export default function Page() {
-  return <MeetinRoomLayOut />;
+  return <MeetingRoomLayOut />;
 }

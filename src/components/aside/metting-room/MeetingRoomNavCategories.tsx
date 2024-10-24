@@ -25,7 +25,7 @@ function MeetingRoomNavCategories({
   onSelectStep: (num: number) => void;
 }) {
   return (
-    <nav className="w-full flex flex-col justify-center items-center">
+    <nav className="w-full flex flex-col justify-center items-center ">
       <ul className="w-full flex flex-col justify-center items-center text-lg">
         {categoryItems.map(({ id, Icon, label }) => (
           <MeetingRoomNavCategory

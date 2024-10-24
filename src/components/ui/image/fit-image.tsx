@@ -1,9 +1,17 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 
-function FitImage({ src, alt }: { src: string; alt: string }): JSX.Element {
+function FitImage({
+  src,
+  alt,
+  className = '',
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}): JSX.Element {
   return (
-    <figure className="w-full h-auto overflow-hidden">
+    <figure className={`w-full h-auto overflow-hidden ${className}`}>
       <Image
         alt={alt}
         className="object-fit"
