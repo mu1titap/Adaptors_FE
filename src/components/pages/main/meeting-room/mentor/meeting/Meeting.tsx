@@ -1,28 +1,13 @@
-import { getParticipantsData } from '@/actions/meeting/meetingAction';
 import MoreIcon from '@/components/assets/icons/More';
 import { participantType } from '@/components/types/main/meeting/meetingTypes';
 import FitImage from '@/components/ui/image/fit-image';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Chatting from '../../chatting/chatting';
 
-const fetchParticipants = async () => {
-  const participants = await getParticipantsData();
-  return participants;
-};
-
-function Meeting() {
-  const [participants, setParticipants] = useState<participantType[]>([]);
-
-  useEffect(() => {
-    const getParticipants = async () => {
-      const participantsData = await fetchParticipants();
-      setParticipants(participantsData);
-    };
-    getParticipants();
-  }, []);
-
+function Meeting({ participants }: { participants: participantType[] }) {
   return (
-    <div className="m-4">
-      <div className="grid grid-cols-2 h-[74px]">
+    <div className="">
+      <div className="m-4 grid grid-cols-2 h-[74px]">
         <header className="flex flex-col justify-center">
           <h3 className="text-lg text-black">
             [취업멘토] 아이돌 취업을 위한 첫걸음 멘토링
@@ -63,10 +48,12 @@ function Meeting() {
         </div>
       </div>
       <div className="grid grid-cols-7 col-span-2 h-[calc(100vh-106px)]">
-        <div className="col-span-5">여기에 영상</div>
+        <div className="col-span-5 bg-[#FAFAFE]">여기에 영상</div>
         <div className="col-span-2">
-          <div className="h-2/5">여기에 참가자 관리</div>
-          <div>여기에 채팅</div>
+          <div className="h-1/4">여기에 참가자 관리</div>
+          <div className="h-3/4">
+            <Chatting />
+          </div>
         </div>
       </div>
     </div>

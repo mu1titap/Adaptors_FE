@@ -1,10 +1,16 @@
 import React from 'react';
 
-export default function MyCourseIcon({ color }: { color: string }) {
+export default function MyCourseIcon({
+  color,
+  size = '28',
+}: {
+  color: string;
+  size?: string;
+}) {
   return (
     <svg
-      width="28"
-      height="28"
+      width={size}
+      height={size}
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
