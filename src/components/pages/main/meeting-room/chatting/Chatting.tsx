@@ -2,10 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import ChatHeader from './ChatHeader';
 import ChatSender from './ChatSender';
 import ChatView from './ChatView';
-import MyCourseIcon from '@/components/assets/icons/MyCourse';
-import ImageIcon from '@/components/assets/icons/ImageIcon';
-import FileIcon from '@/components/assets/icons/FileIcon';
-import SendIcon from '@/components/assets/icons/SendIcon';
+import { participantType } from '@/components/types/main/meeting/meetingTypes';
 
 export interface ChatRoomProps {
   rommId: string;
@@ -19,7 +16,7 @@ export interface ChatMessage {
   time: string;
 }
 
-function Chatting() {
+function Chatting({ participants }: { participants: participantType[] }) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       messageType: 'text',
@@ -38,7 +35,6 @@ function Chatting() {
   ]);
   const [newMessage, setNewMessage] = useState<string>('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [participants, setParticipants] = useState<number>(2);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -103,78 +99,19 @@ function Chatting() {
 
   return (
     <div className="flex flex-col w-full h-full ">
-      <div className="p-4 flex justify-between items-center">
-        <h1 className="text-md font-bold">채팅방 제목</h1>
-        <div className="flex items-center text-sm">
-          <MyCourseIcon color="white" size="20" />
-          <span>{participants} 명 참여 중</span>
-        </div>
-      </div>
-
-      <div
-        className="flex-grow p-2 overflow-y-auto text-xs"
-        onDragOver={(e: React.DragEvent<HTMLDivElement>) => e.preventDefault()}
-        onDrop={handleDrop}
-      >
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`mb-2 text-xs ${message.senderId === 'currentUser' ? 'text-right' : 'text-left'}`}
-          >
-            <div
-              className={`inline-block p-2 rounded-lg ${message.senderId === 'currentUser' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800'}`}
-            >
-              {message.message}
-            </div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
-
-      <form onSubmit={handleSendMessage} className="p-1 w-full bg-white">
-        <button
-          type="button"
-          className="p-2 rounded-full hover:bg-gray-200 transition-colors"
-          onClick={() => fileInputRef.current?.click()}
-        >
-          <ImageIcon size="20" color="#ACACAC" />
-        </button>
-        <button
-          type="button"
-          className="p-2 rounded-full hover:bg-gray-200 transition-colors"
-          onClick={() => fileInputRef.current?.click()}
-        >
-          <FileIcon size="20" color="#ACACAC" />
-        </button>
-        <div className="flex m-auto items-center text-sm rounded-xl bg-[#F5F5F5] text-[#8C8C8C]">
-          {selectedFile ? (
-            <div className="flex-grow p-1 ml-2">
-              Selected file: {selectedFile.name}
-            </div>
-          ) : (
-            <input
-              type="text"
-              placeholder="메시지를 입력하세요..."
-              value={newMessage}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setNewMessage(e.target.value)
-              }
-              className="flex-grow p-1 ml-2 bg-[#F5F5F5] border-none rounded-md focus:outline-none focus:ring-2"
-            />
-          )}
-          <button
-            type="submit"
-            className="p-2 rounded-xl hover:bg-white transition-colors"
-          >
-            <SendIcon color="#8C8C8C" />
-          </button>
-        </div>
-      </form>
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileSelect}
-        className="hidden"
+      <ChatHeader participants={participants} />
+      <ChatView
+        handleDrop={handleDrop}
+        messages={messages}
+        messagesEndRef={messagesEndRef}
+      />
+      <ChatSender
+        handleSendMessage={handleSendMessage}
+        fileInputRef={fileInputRef}
+        selectedFile={selectedFile}
+        newMessage={newMessage}
+        setNewMessage={setNewMessage}
+        handleFileSelect={handleFileSelect}
       />
     </div>
   );

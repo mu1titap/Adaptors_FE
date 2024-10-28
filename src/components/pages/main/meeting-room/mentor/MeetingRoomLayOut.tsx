@@ -23,7 +23,7 @@ function MeetingRoomLayOut({
 }) {
   const { level, step, onSelectStep } = useFunnel({ steps });
   return (
-    <main className="grid grid-cols-7 w-full h-screen min-w-[1248px]">
+    <main className="grid grid-cols-7 w-full h-screen min-w-[1024px]">
       <MeetingRoomNav level={level} onSelectStep={onSelectStep} />
       <div className="col-span-6">
         <Funnel step={step}>

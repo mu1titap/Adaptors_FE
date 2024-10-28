@@ -10,6 +10,17 @@ const config = {
   ],
   prefix: '',
   theme: {
+    fontSize: {
+      'xs': '0.5rem',
+      'sm': '0.625rem',
+      'md': '0.75rem',
+      'lg': '0.875rem',
+      'xl': '1rem',
+      '2xl': '1.25rem',
+      '3xl': '1.5rem',
+      '4xl': '1.75rem',
+      '5xl': '2rem',
+    },
     fontFamily: {
       NanumSquare: ['NanumSquare'],
     },
@@ -22,6 +33,8 @@ const config = {
     },
     extend: {
       colors: {
+        adaptorsBlue: '#0060FF',
+        adaptorsGray: '#ACACAC',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

@@ -11,7 +11,7 @@ function FitImage({
   className?: string;
 }): JSX.Element {
   return (
-    <figure className={`w-full h-auto overflow-hidden ${className}`}>
+    <figure className={`${className}`}>
       <Image
         alt={alt}
         className="object-fit"
